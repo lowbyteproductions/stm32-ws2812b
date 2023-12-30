@@ -34,8 +34,8 @@ void WS2812B_Write(WS2812B_t* ws2812b) {
     RGB_t led = ws2812b->leds[i];
 
     // Green
-    for (uint8_t bit = 0; bit < 8; bit++) {
-      if (led.g & 0x80) {
+    for (uint8_t mask = 0x80; mask != 0; mask >>= 1) {
+      if (led.g & mask) {
         send_one(ws2812b->port, ws2812b->pin);
       } else {
         send_zero(ws2812b->port, ws2812b->pin);
@@ -43,8 +43,8 @@ void WS2812B_Write(WS2812B_t* ws2812b) {
     }
 
     // Red
-    for (uint8_t bit = 0; bit < 8; bit++) {
-      if (led.r & 0x80) {
+    for (uint8_t mask = 0x80; mask != 0; mask >>= 1) {
+      if (led.r & mask) {
         send_one(ws2812b->port, ws2812b->pin);
       } else {
         send_zero(ws2812b->port, ws2812b->pin);
@@ -52,8 +52,8 @@ void WS2812B_Write(WS2812B_t* ws2812b) {
     }
 
     // Blue
-    for (uint8_t bit = 0; bit < 8; bit++) {
-      if (led.b & 0x80) {
+    for (uint8_t mask = 0x80; mask != 0; mask >>= 1) {
+      if (led.b & mask) {
         send_one(ws2812b->port, ws2812b->pin);
       } else {
         send_zero(ws2812b->port, ws2812b->pin);
